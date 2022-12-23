@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import papaparse from 'papaparse';
 import axios from 'axios'
 import { BASEURL } from "./Contants"
 import { toast } from "react-toastify"
-// import * as fs from 'fs-react';
 import { saveAs } from 'file-saver';
-// import csv from 'csv-parser';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDownload, faFloppyDisk, faUpload } from '@fortawesome/free-solid-svg-icons'
 
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -69,21 +68,22 @@ export const DataParser = () => {
           <div className='row d-flex justify-content-center'>
             <div className='col-sm-12 col-md-4 col-lg-4 mb-1 text-center'>
               <label for="inputTag" className='fileLabel'>
+                <FontAwesomeIcon icon={faUpload} style={{ marginRight: '5px' }} />
                 Upload CSV
                 <input id="inputTag" className='fileInput' type="file" onChange={uploadFileHandler} />
               </label>
             </div>
             <div className='col-sm-12 col-md-4 col-lg-4 mb-1 text-center'>
-              {/* <label for="inputTag" className='fileLabel'> */}
               <button className='btn-custom' onClick={handleSubmit}>
+                <FontAwesomeIcon icon={faFloppyDisk} style={{ marginRight: '5px' }} />
                 Save To DB
               </button>
               {/* </label> */}
             </div>
             <div className='col-sm-12 col-md-4 col-lg-4 mb-1 text-center'>
               <label for="" className='fileLabel' onClick={downloadCSV}>
+                <FontAwesomeIcon icon={faDownload} style={{ marginRight: '5px' }} />
                 Download JSON
-                {/* <input id="inputTag" className='fileInput' type="file" onChange={downloadCSV} /> */}
               </label>
             </div>
           </div>

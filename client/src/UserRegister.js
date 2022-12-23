@@ -151,6 +151,7 @@ const UserRegister = () => {
 
     const handleClose = () => {
         setOpen(false);
+        if (selected) setSelected()
     };
 
     const deleteHandler = async () => {
@@ -264,10 +265,12 @@ const UserRegister = () => {
                 </div>
                 <div className='table-body p-2'>
                     <h1 className='text-center p-3'>Table</h1>
-                    <div className='row d-flex justify-content-end'>
-                        <div className='col-sm-1 col-md-2 col-lg-1 mb-1'>
-                            <Button onClick={handleDownload} style={{ padding: 0, margin: 0, height: '2.5rem', width: "2.5rem", fontSize: "2rem" }}>
-                                <FontAwesomeIcon icon={faDownload} /></Button>
+                    <div className='row d-flex justify-content-end align-items-center'>
+                        <div className='col-sm-1 col-md-2 col-lg-1 mb-2 ml-2'>
+                            <Button onClick={handleDownload} style={{ padding: 0, margin: 0,fontSize: "20px" }}>
+                                <FontAwesomeIcon icon={faDownload} />
+                                <span style={{ padding: 0, margin: 0,fontSize: "10px",fontWeight:"bold" }}>Download CSV</span>
+                                </Button>
                         </div>
                         <div className='col-sm-2 col-md-3 col-lg-3 mb-1'>
                             <SearchBar

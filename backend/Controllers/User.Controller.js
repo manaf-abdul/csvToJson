@@ -76,7 +76,6 @@ export const deleteUser = async (req, res) => {
 // @rout    POST /api/form/parse-file
 // @acce    Public
 export const csvToJson = async (req, res) => {
-    console.log("11111111", req.file);
     try {
         if (!req.file) return res.status(400).send("File Not Present")
         const buffer = req.file.buffer;
@@ -88,8 +87,6 @@ export const csvToJson = async (req, res) => {
         const json = papa.parse(csvString, {
             header: true
         });
-
-        console.log(json.data);
         return res.status(200).json(json.data)
     } catch (error) {
         console.log(error);
@@ -102,7 +99,6 @@ export const csvToJson = async (req, res) => {
 // @acce    Public
 export const saveToDb = async (req, res) => {
     try {
-        console.log(req.body)
         await User.create(req.body)
         return res.status(200).json({ Success: "true" })
     } catch (error) {
