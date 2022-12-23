@@ -97,3 +97,17 @@ export const csvToJson = async (req, res) => {
     }
 }
 
+// @desc    Save Table Data to DB
+// @rout    POST /api/form/save-to-db
+// @acce    Public
+export const saveToDb = async (req, res) => {
+    try {
+        console.log(req.body)
+        await User.create(req.body)
+        return res.status(200).json({ Success: "true" })
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send(error.message)
+    }
+}
+

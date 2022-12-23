@@ -7,7 +7,7 @@ import { toast } from "react-toastify"
 import papaparse from 'papaparse';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen, faTrash, faFileCsv } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faTrash, faDownload } from '@fortawesome/free-solid-svg-icons'
 
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -121,6 +121,7 @@ const UserRegister = () => {
         try {
             setLoading(true)
             console.table({ values });
+            //Check if Edit/Save
             if (selected) {
                 const { data } = await axios.post(`${BASEURL}/api/form/edit`, { ...values, _id: selected })
                 toast.success('Data Editted Successfully')
@@ -130,7 +131,15 @@ const UserRegister = () => {
             }
             setLoading(false)
             setRender(true)
-            setValues({ ...values, render: true })
+            setValues({
+                ...values,
+                name: '',
+                email: '',
+                country: '',
+                date: '',
+                address: ''
+            })
+            setSelected()
             // router.push('/login')
         } catch (error) {
             toast.error(error.response.data)
@@ -256,10 +265,11 @@ const UserRegister = () => {
                 <div className='table-body p-2'>
                     <h1 className='text-center p-3'>Table</h1>
                     <div className='row d-flex justify-content-end'>
-                        <div className='col-sm-1 col-md-2'>
-                            <Button onClick={handleDownload} style={{ padding: 0, margin: 0, height: '2.5rem', width: "2.5rem", fontSize: "2.5rem" }}><FontAwesomeIcon icon={faFileCsv} /></Button>
+                        <div className='col-sm-1 col-md-2 col-lg-1 mb-1'>
+                            <Button onClick={handleDownload} style={{ padding: 0, margin: 0, height: '2.5rem', width: "2.5rem", fontSize: "2rem" }}>
+                                <FontAwesomeIcon icon={faDownload} /></Button>
                         </div>
-                        <div className='col-sm-2 col-md-3'>
+                        <div className='col-sm-2 col-md-3 col-lg-3 mb-1'>
                             <SearchBar
                                 value={searched}
                                 onChange={(searchVal) => requestSearch(searchVal)}

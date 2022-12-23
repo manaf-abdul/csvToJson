@@ -1,11 +1,12 @@
 import  express  from "express";
 const router=express.Router()
-import {csvToJson, deleteUser, editUser, getAllUsers, register} from '../Controllers/User.Controller.js'
+import {csvToJson, deleteUser, editUser, getAllUsers, register, saveToDb} from '../Controllers/User.Controller.js'
 import { upload } from "../middleware/Multer.js";
 
 router.post("/register", register)
 router.post("/edit", editUser)
 router.post("/parse-file",upload.single('file'), csvToJson)
+router.post("/save-to-db", saveToDb)
 router.get("/", getAllUsers)
 router.delete("/:id", deleteUser)
 
