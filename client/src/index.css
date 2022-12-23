@@ -34,37 +34,47 @@ label{
 }
 .btnfont{
   padding: 0;
-  /* width:15rem; */
   font-size: 18pxrem!important;box-shadow: inset;
 }
 .fileInput{
   display: none;
 }
 .fileLabel{
-  width: auto;
-  padding: 1rem;
-  height:auto;
-  text-align: center;
-  padding-top: 5px;
-  height: 2rem;
+  --color: #007bff;
+  font-family: inherit;
+  display: inline-block;
+  width: 8em;
+  height: 2.6em;
+  line-height: 2.5em;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--color);
+  transition: color .5s;
+  z-index: 1;
+  font-size: 17px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: var(--color);
   cursor: pointer;
-  border: #dcdcdcd6;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 10px;
 }
 .fileLabel:hover{
-  width: auto;
-  padding: 1rem;
-  height:auto;
-  text-align: center;
-  padding-top: 5px;
-  height: 2rem;
-  cursor: pointer;
-  border: #dcdcdcd6;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  color:white;
+  --color: white;
   background-color: #007bff;
-  border-radius: 10px;
+  font-family: inherit;
+  display: inline-block;
+  width: 8em;
+  height: 2.6em;
+  line-height: 2.5em;
+  /* margin: 20px; */
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--color);
+  transition: color .5s;
+  z-index: 1;
+  font-size: 17px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: var(--color);
 }
 .btn-custom{
   --color: #007bff;
