@@ -1,0 +1,106 @@
+import User from '../Models/User.model.js'
+import csv from 'csv-parser'
+import fs from 'fs'
+
+// @desc    Register a new User
+// @rout    POST /api/form/register
+// @acce    Public
+export const register = async (req, res) => {
+    console.log(req.body);
+    try {
+        const { name, email, country, address, date } = req.body
+        if (!name, !email, !country, !address, !date) return res.status(400).send("All field should be present")
+
+        const user = await new User({
+            name, email, country, address, dateOfBirth: date
+        }).save()
+        return res.status(200).json({ Success: "true" })
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send(error.message)
+    }
+}
+
+// @desc    Edit a User
+// @rout    POST /api/form/edit
+// @acce    Public
+export const editUser = async (req, res) => {
+    try {
+        const { name, email, country, address, date, _id } = req.body
+        if (!name, !email, !country, !address, !date, !_id) return res.status(400).send("All field should be present")
+        let user = await User.findById(_id)
+        if (!user) return res.status(400).send("User Data Not Found")
+        // const user = await new User({
+        //     name, email, country,address,dateOfBirth:date
+        // }).save()
+        user.name = name ? name : user.name
+        user.email = email ? email : user.email
+        user.country = country ? country : user.country
+        user.address = address ? address : user.address
+        user.date = date ? date : user.date
+        user = await user.save()
+        return res.status(200).json({ Success: "true" })
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send(error.message)
+    }
+}
+
+// @desc    Get All Users in the DB
+// @rout    GET /api/form
+// @acce    Public
+export const getAllUsers = async (req, res) => {
+    try {
+        let users = await User.find({})
+        return res.status(200).json(users)
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send(error.message)
+    }
+}
+
+
+// @desc    Get All Users in the DB
+// @rout    DELETE /api/form
+// @acce    Public
+export const deleteUser = async (req, res) => {
+    try {
+        let { id } = req.params;
+        let user = await User.findById(id)
+        if (!user) return res.status(400).send("User Data Not Found")
+        await User.deleteOne({ _id: id })
+        return res.status(200).json({ Success: "true" })
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send(error.message)
+    }
+}
+
+// @desc    Parse req fle to JSON data
+// @rout    POST /api/form/parse-file
+// @acce    Public
+export const csvToJson = async (req, res) => {
+    console.log("11111111", req.file);
+    try {
+        var s3Data
+        if (!req.file) return res.status(400).send("File Not Present")
+        // csv(req.file.buffer).then((jsonObj)=>{
+        //     s3Data = jsonObj
+        //   })
+        //   console.log(s3Data)
+        var readStream = fs.createReadStream({ path: req.file.buffer });
+        readStream.pipe(csv()).on('data', (data) => results.push(data))
+            .on('end', () => {
+                console.log(results);
+                // [
+                //   { NAME: 'Daffy Duck', AGE: '24' },
+                //   { NAME: 'Bugs Bunny', AGE: '22' }
+                // ]
+            });;
+        return res.status(200).json(s3Data)
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send(error.message)
+    }
+}
+

@@ -1,0 +1,128 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Task",
+        "description": "API in NodeJs using Swagger",
+        "contact": {
+            "email": "abdulmanafp1966@gmail.com"
+        },
+        "license": {
+            "url": "https://manaf-abdul.github.io/manafabdul/"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:5001",
+            "description": "Development Environment"
+        }
+    ],
+    "tags": [
+        {
+            "name": "User",
+            "description": ""
+        }
+    ],
+    "paths": {
+        "/api/user/signup": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Sign Up ",
+                "description": "User SIgnUP",
+                "produces": "application/json",
+                "consumes": "application/json",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "abdulmanafp1996@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "Pass123"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Manaf Abdul"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Verified SuccessFully"
+                    },
+                    "401": {
+                        "description": "Unauthorized access to API"
+                    }
+                }
+            }
+        },
+        "/api/user/signin": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Sign In ",
+                "description": "User SignIn",
+                "produces": "application/json",
+                "consumes": "application/json",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "abdulmanafp1996@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "Pass123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Verified SuccessFully"
+                    },
+                    "401": {
+                        "description": "Unauthorized access to API"
+                    }
+                }
+            }
+        }
+    }
+}
