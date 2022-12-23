@@ -29,7 +29,12 @@ label{
 .table-body{
   background-color: #dcdcdcd6;
 }
-
+.square{
+  border-radius: 0px;
+}
+.btnfont{
+  font-size: 1.5rem!important;
+}
 @media (min-width: 1200px) {
 
   .container,

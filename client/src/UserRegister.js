@@ -106,15 +106,15 @@ const UserRegister = () => {
             dob: user.dateOfBirth,
             address: user.address,
             country: user.country
-          }));
+        }));
         const csv = papaparse.unparse(datas);
-    
+
         // Trigger a download of the CSV file
         const link = document.createElement('a');
         link.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
         link.download = 'data.csv';
         link.click();
-      }
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -172,7 +172,7 @@ const UserRegister = () => {
                 onClose={handleClose}
                 deleteHandler={deleteHandler}
             />
-            <h1 className='jumbotron p-4 bg-primary square text-center' style={{ color: "white" }}>Form</h1>
+            <h1 className='jumbotron p-4 bg-primary square text-center' style={{ color: "white", borderRadius: '0px' }}>Form</h1>
             <div className='container fluid'>
                 <div>
                     <div className='container fluid col-md-12 col-lg-12 pb-5'>
@@ -257,7 +257,7 @@ const UserRegister = () => {
                     <h1 className='text-center p-3'>Table</h1>
                     <div className='row d-flex justify-content-end'>
                         <div className='col-sm-1 col-md-2'>
-                            <Button onClick={handleDownload} style={{padding:0,margin:0,height:'2.5rem',width:"2.5rem",fontSize:"2.5rem"}}><FontAwesomeIcon icon={faFileCsv} /></Button>
+                            <Button onClick={handleDownload} style={{ padding: 0, margin: 0, height: '2.5rem', width: "2.5rem", fontSize: "2.5rem" }}><FontAwesomeIcon icon={faFileCsv} /></Button>
                         </div>
                         <div className='col-sm-2 col-md-3'>
                             <SearchBar

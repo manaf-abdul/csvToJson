@@ -1,6 +1,5 @@
 import User from '../Models/User.model.js'
-import csv from 'csv-parser'
-import fs from 'fs'
+import papa from 'papaparse'
 
 // @desc    Register a new User
 // @rout    POST /api/form/register
@@ -30,9 +29,6 @@ export const editUser = async (req, res) => {
         if (!name, !email, !country, !address, !date, !_id) return res.status(400).send("All field should be present")
         let user = await User.findById(_id)
         if (!user) return res.status(400).send("User Data Not Found")
-        // const user = await new User({
-        //     name, email, country,address,dateOfBirth:date
-        // }).save()
         user.name = name ? name : user.name
         user.email = email ? email : user.email
         user.country = country ? country : user.country
@@ -82,22 +78,19 @@ export const deleteUser = async (req, res) => {
 export const csvToJson = async (req, res) => {
     console.log("11111111", req.file);
     try {
-        var s3Data
         if (!req.file) return res.status(400).send("File Not Present")
-        // csv(req.file.buffer).then((jsonObj)=>{
-        //     s3Data = jsonObj
-        //   })
-        //   console.log(s3Data)
-        var readStream = fs.createReadStream({ path: req.file.buffer });
-        readStream.pipe(csv()).on('data', (data) => results.push(data))
-            .on('end', () => {
-                console.log(results);
-                // [
-                //   { NAME: 'Daffy Duck', AGE: '24' },
-                //   { NAME: 'Bugs Bunny', AGE: '22' }
-                // ]
-            });;
-        return res.status(200).json(s3Data)
+        const buffer = req.file.buffer;
+
+        // Convert the buffer to a string
+        const csvString = buffer.toString();
+
+        // Parse the CSV string to JSON
+        const json = papa.parse(csvString, {
+            header: true
+        });
+
+        console.log(json.data);
+        return res.status(200).json(json.data)
     } catch (error) {
         console.log(error);
         return res.status(400).send(error.message)
