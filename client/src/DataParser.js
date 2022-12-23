@@ -12,7 +12,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import { Button } from '@material-ui/core'
 
 
 export const DataParser = () => {
@@ -90,7 +89,7 @@ export const DataParser = () => {
           <div className='row'>
             <div className='col-md-12 mt-4'>
 
-              <h3 className='text-center' style={{ color: "black" }}>Data</h3>
+              {tableData.length > 0 && <h3 className='text-center' style={{ color: "black" }}>Data</h3>}
             </div>
             <TableContainer>
               {tableData.length > 0 ? <Table aria-label="simple table">

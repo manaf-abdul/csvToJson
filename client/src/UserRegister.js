@@ -267,10 +267,10 @@ const UserRegister = () => {
                     <h1 className='text-center p-3'>Table</h1>
                     <div className='row d-flex justify-content-end align-items-center'>
                         <div className='col-sm-1 col-md-2 col-lg-1 mb-2 ml-2'>
-                            <Button onClick={handleDownload} style={{ padding: 0, margin: 0,fontSize: "20px" }}>
+                            <Button onClick={handleDownload} style={{ padding: 0, margin: 0, fontSize: "20px" }}>
                                 <FontAwesomeIcon icon={faDownload} />
-                                <span style={{ padding: 0, margin: 0,fontSize: "10px",fontWeight:"bold" }}>Download CSV</span>
-                                </Button>
+                                <span style={{ padding: 0, margin: 0, fontSize: "10px", fontWeight: "bold" }}>Download CSV</span>
+                            </Button>
                         </div>
                         <div className='col-sm-2 col-md-3 col-lg-3 mb-1'>
                             <SearchBar
@@ -281,7 +281,7 @@ const UserRegister = () => {
                         </div>
                     </div>
                     <TableContainer>
-                        <Table aria-label="simple table">
+                        {rows.length > 0 ? <Table aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Name</TableCell>
@@ -290,10 +290,11 @@ const UserRegister = () => {
                                     <TableCell align="left">Address</TableCell>
                                     <TableCell align="left">Date of Birth</TableCell>
                                     <TableCell align="center">Actions</TableCell>
+
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.map((row) => (
+                                {rows && rows.length > 0 && rows.map((row) => (
                                     <TableRow key={row._id}>
                                         <TableCell component="th" scope="row">
                                             {row.name}
@@ -307,9 +308,13 @@ const UserRegister = () => {
                                             <Button onClick={() => modalShow(row)}><FontAwesomeIcon icon={faTrash} /></Button>
                                         </TableCell>
                                     </TableRow>
-                                ))}
+                                ))
+                                }
                             </TableBody>
                         </Table>
+                            : <h3 className='text-center p-4'>
+                                No Data , Please create new data to view it in the table
+                            </h3>}
                     </TableContainer>
                 </div>
             </div>
