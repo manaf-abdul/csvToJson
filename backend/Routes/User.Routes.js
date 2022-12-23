@@ -7,7 +7,7 @@ router.post("/register", register)
 router.post("/edit", editUser)
 router.post("/parse-file",upload.single('file'), csvToJson)
 router.post("/save-to-db", saveToDb)
-router.get("/", getAllUsers)
+router.post("/get-all-users", getAllUsers)
 router.delete("/:id", deleteUser)
 
 export default router

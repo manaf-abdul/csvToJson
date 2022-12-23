@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
+import path from 'path'
 import morgan from 'morgan';
 import swaggerUI from "swagger-ui-express";
 import connectDB from './Config/DB.js'
@@ -28,8 +29,20 @@ app.use(morgan('dev'))
 //documentation route
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerJSDocs));
 
-//api routes
+//serving frontend
+const __dirname = path.resolve()
+
+
 app.use('/api/form', UserRoutes)
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '/client/build')))
+  
+    app.get('*', (req, res) =>
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    )
+  } 
+//api routes
 
 //test-route
 app.get("/test", async (req, res) => {

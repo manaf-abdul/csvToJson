@@ -46,6 +46,7 @@ export const editUser = async (req, res) => {
 // @rout    GET /api/form
 // @acce    Public
 export const getAllUsers = async (req, res) => {
+    console.log("here");
     try {
         let users = await User.find({})
         return res.status(200).json(users)

@@ -86,7 +86,7 @@ const UserRegister = () => {
     useEffect(() => {
         const getData = async () => {
             try {
-                const { data } = await axios.get(`${BASEURL}/api/form`)
+                const { data } = await axios.post(`${BASEURL}/api/form/get-all-users`)
                 setData(data)
                 setRows(data)
             } catch (error) {
