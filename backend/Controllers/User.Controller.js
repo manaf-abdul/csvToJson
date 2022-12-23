@@ -100,7 +100,16 @@ export const csvToJson = async (req, res) => {
 // @acce    Public
 export const saveToDb = async (req, res) => {
     try {
-        await User.create(req.body)
+        const data=req.body.map(user=>{
+            return{
+                name:user.name,
+                email:user.email,
+                dateOfBirth:user.dob,
+                address:user.address,
+                country:user.country,
+            }
+        })
+        await User.create(data)
         return res.status(200).json({ Success: "true" })
     } catch (error) {
         console.log(error);
