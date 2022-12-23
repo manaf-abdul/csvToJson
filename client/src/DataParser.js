@@ -12,6 +12,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import { Link } from 'react-router-dom';
 
 
 export const DataParser = () => {
@@ -57,7 +58,11 @@ export const DataParser = () => {
   return (
     <>
       <h1 className='jumbotron p-4 bg-primary text-center square' style={{ color: "white", borderRadius: '0px' }}>CSV TO JSON</h1>
+
       <div className='container fluid' style={{ backgroundColor: 'white' }}>
+        <Link className='mb-4' to={'/'}>
+          1st Page
+        </Link>
         <div className='row p-1 mb-4'>
           <div className='col-md-3 col-lg-3'>
             <button className='btn btn-primary btnfont' onClick={downloadCSV}>Download CSV Demo File</button>

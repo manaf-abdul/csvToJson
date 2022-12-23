@@ -20,6 +20,7 @@ import SearchBar from "material-ui-search-bar";
 import { Button } from '@material-ui/core'
 
 import ConfirmationModal from './components/ConfirmationModal'
+import { Link } from 'react-router-dom'
 
 const UserRegister = () => {
 
@@ -183,7 +184,11 @@ const UserRegister = () => {
                 deleteHandler={deleteHandler}
             />
             <h1 className='jumbotron p-4 bg-primary square text-center' style={{ color: "white", borderRadius: '0px' }}>Form</h1>
+
             <div className='container fluid'>
+                <Link className='mb-4' to={'/csv'}>
+                    2nd Page
+                </Link>
                 <div>
                     <div className='container fluid col-md-12 col-lg-12 pb-5'>
                         <form onSubmit={handleSubmit}>
