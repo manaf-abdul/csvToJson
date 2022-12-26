@@ -55,6 +55,14 @@ export const DataParser = () => {
     saveAs(blob, 'data.json');
   };
 
+  const downloadDemoCSV = () => {
+    const link = document.createElement('a');
+    link.href = '/test.csv';
+    link.download = 'test.csv';
+    document.body.appendChild(link);
+    link.click();
+  };
+
   return (
     <>
       <h1 className='jumbotron p-4 bg-primary text-center square' style={{ color: "white", borderRadius: '0px' }}>CSV TO JSON</h1>
@@ -65,7 +73,7 @@ export const DataParser = () => {
         </Link>
         <div className='row p-1 mb-4'>
           <div className='col-md-3 col-lg-3'>
-            <button className='btn btn-primary btnfont' onClick={downloadCSV}>Download CSV Demo File</button>
+            <button className='btn btn-primary btnfont' onClick={downloadDemoCSV}>Download CSV Demo File</button>
           </div>
         </div>
         <div className='p-3 mt-4' style={{ backgroundColor: "whitesmoke" }}>
